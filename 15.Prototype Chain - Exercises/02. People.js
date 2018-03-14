@@ -11,12 +11,12 @@ function solve() {
         }
 
         work() {
-            let task = this.tasks.unshift()
+            let task = this.tasks.shift();
             console.log(task);
             this.tasks.push(task);
         }
 
-        collectSallary() {
+        collectSalary() {
             console.log(`${this.name} received ${this.getSalary()} this month.`)
         }
 
@@ -28,7 +28,7 @@ function solve() {
     class Junior extends Employee {
         constructor(name, age) {
             super(name, age);
-            this.tasks.push(`${this.name} is working on simple task.`);
+            this.tasks.push(`${this.name} is working on a simple task.`);
         }
     }
 
@@ -42,17 +42,22 @@ function solve() {
     }
 
     class Manager extends Employee {
-        constructor(name, age, divident) {
+        constructor(name, age) {
             super(name, age);
-            this.divident = divident;
+            this.dividend = 0;
             this.tasks.push(`${this.name} scheduled a meeting.`);
             this.tasks.push(`${this.name} is preparing a quarterly report.`);
         }
 
         getSalary() {
-            return this.salary + this.divident;
+            return this.salary + this.dividend;
         }
     }
 
     return {Employee, Junior, Senior, Manager};
 }
+let res = solve();
+
+let gay = new res.Junior('pesho', 23);
+console.log(gay.tasks);
+gay.work();
